@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { GameState } from '../components/Game';
+import { Errors } from '../model/Errors';
 import { Question } from '../model/Question';
 import { getQuestion } from '../services/OpenTDBService';
 
@@ -19,6 +20,9 @@ export function useGameState(): GameState {
         }
       },
       (error) => {
+        if (!error) {
+          error = { message: Errors.GENERIC_ERROR };
+        }
         setGameState({
           isLoaded: true,
           error,

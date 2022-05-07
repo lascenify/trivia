@@ -6,7 +6,7 @@ import logo from '../icons/logo.jpg';
 export interface GameState {
   isLoaded: boolean;
   question?: Question;
-  error?: any;
+  error?: { message: string };
 }
 export function Game() {
   const gameState: GameState = useGameState();
