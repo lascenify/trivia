@@ -1,4 +1,5 @@
 import React from 'react';
+import { OpenTDBResponse } from '../model/OpenTDBResponse';
 import { Question } from '../model/Question';
 interface GameProps {}
 interface GameState {
@@ -17,15 +18,12 @@ export class Game extends React.Component<GameProps, GameState> {
     fetch('https://opentdb.com/api.php?amount=1')
       .then((res) => res.json())
       .then(
-        (result) => {
+        (result: OpenTDBResponse) => {
           this.setState({
             isLoaded: true,
             question: result.results[0],
           });
         },
-        // Nota: es importante manejar errores aquí y no en
-        // un bloque catch() para que no interceptemos errores
-        // de errores reales en los componentes.
         (error) => {
           this.setState({
             isLoaded: true,
@@ -42,7 +40,17 @@ export class Game extends React.Component<GameProps, GameState> {
     } else if (!isLoaded) {
       return <div>Loading...</div>;
     } else {
-      return <div>{question?.question}</div>;
+      return (
+        <div>
+          <div>{question?.question}</div>
+          <ul>
+            {question?.incorrect_answers?.map((answer) => (
+              <li key={answer}>{answer}</li>
+            ))}
+            <li>{question?.correct_answer}</li>
+          </ul>
+        </div>
+      );
     }
   }
 }
