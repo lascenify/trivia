@@ -1,6 +1,6 @@
 import { OpenTDBResponse } from '../model/OpenTDBResponse';
 import { Question } from '../model/Question';
-import { moveElementWithinArray } from '../utils/utils';
+import { getRandomNumberInRange, moveElementWithinArray } from '../utils/utils';
 
 export function getQuestion(): Promise<Question | undefined> {
   return fetch('https://opentdb.com/api.php?amount=1').then(async (res) => {
@@ -14,7 +14,7 @@ export function getQuestion(): Promise<Question | undefined> {
         text: questionResponse.correct_answer,
         isCorrect: true,
       });
-      const correctAnswerIndex = Math.round(Math.random() * answers.length);
+      const correctAnswerIndex = getRandomNumberInRange(answers.length);
       const randomOrderedAnswers = moveElementWithinArray(
         answers,
         answers.length - 1,

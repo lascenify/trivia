@@ -7,3 +7,7 @@ export function moveElementWithinArray(array: Answer[], from: number, to: number
   newArray.splice(to, 0, element);
   return newArray;
 }
+
+export function getRandomNumberInRange(max: number) {
+  return Math.round(Math.random() * max);
+}
