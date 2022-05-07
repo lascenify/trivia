@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useGameState } from '../hooks/UseGameState';
 import { Question } from '../model/Question';
 import { Result } from './Result';
+import logo from '../icons/logo.jpg';
 export interface GameState {
   isLoaded: boolean;
   question?: Question;
@@ -19,7 +20,8 @@ export function Game() {
     return <div>Loading...</div>;
   } else {
     return (
-      <div>
+      <div className="Game">
+        <img src={logo} className="App-logo" alt="logo" />
         <div>{question?.question}</div>
         <ul>
           {question?.answers.map((answer) => {
@@ -36,7 +38,7 @@ export function Game() {
             );
           })}
         </ul>
-        <button onClick={() => setResponseSent(true)}> SEND!</button>
+        <button onClick={() => setResponseSent(true)}> Check answer!</button>
         {selectedAnswer && responseSent && <Result success={selectedAnswer === correctAnswer} />}
       </div>
     );
