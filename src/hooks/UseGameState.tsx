@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { GameState } from '../components/Game';
-import { OpenTDBResponse } from '../model/OpenTDBResponse';
+import { Question } from '../model/Question';
+import { getQuestion } from '../services/OpenTDBService';
 
 export function useGameState(): GameState {
   const [gameState, setGameState] = useState({
@@ -8,22 +9,22 @@ export function useGameState(): GameState {
   } as GameState);
 
   useState(() => {
-    fetch('https://opentdb.com/api.php?amount=1')
-      .then((res) => res.json())
-      .then(
-        (result: OpenTDBResponse) => {
+    getQuestion().then(
+      (result: Question | undefined) => {
+        if (result) {
           setGameState({
             isLoaded: true,
-            question: result.results[0],
-          });
-        },
-        (error) => {
-          setGameState({
-            isLoaded: true,
-            error,
+            question: result,
           });
         }
-      );
+      },
+      (error) => {
+        setGameState({
+          isLoaded: true,
+          error,
+        });
+      }
+    );
   });
 
   return gameState;

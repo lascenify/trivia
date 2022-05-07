@@ -17,18 +17,14 @@ export function Game() {
       <div>
         <div>{question?.question}</div>
         <ul>
-          {question?.incorrect_answers?.map((answer) => {
+          {question?.answers.map((answer) => {
             return (
               <label>
-                <input type="radio" value={answer} name="answer" />
-                {answer}
+                <input type="radio" value={answer.text} name="answer" />
+                {answer.text}
               </label>
             );
           })}
-          <label>
-            <input type="radio" value={question?.correct_answer} name="answer" />
-            {question?.correct_answer}
-          </label>
         </ul>
       </div>
     );
