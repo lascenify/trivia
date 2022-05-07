@@ -1,5 +1,7 @@
+import { useState } from 'react';
 import { useGameState } from '../hooks/UseGameState';
 import { Question } from '../model/Question';
+import { Result } from './Result';
 export interface GameState {
   isLoaded: boolean;
   question?: Question;
@@ -7,7 +9,10 @@ export interface GameState {
 }
 export function Game() {
   const gameState: GameState = useGameState();
+  const [selectedAnswer, setSelectedAnswer] = useState(gameState?.question?.answers[0]);
+  const [responseSent, setResponseSent] = useState(false);
   const { error, isLoaded, question } = gameState;
+  const correctAnswer = question?.answers.find((answer) => answer.isCorrect);
   if (gameState.error) {
     return <div>Error: {error?.message}</div>;
   } else if (!isLoaded) {
@@ -20,12 +25,19 @@ export function Game() {
           {question?.answers.map((answer) => {
             return (
               <label>
-                <input type="radio" value={answer.text} name="answer" />
+                <input
+                  type="radio"
+                  value={answer.text}
+                  name="answer"
+                  onClick={() => setSelectedAnswer(answer)}
+                />
                 {answer.text}
               </label>
             );
           })}
         </ul>
+        <button onClick={() => setResponseSent(true)}> SEND!</button>
+        {selectedAnswer && responseSent && <Result success={selectedAnswer === correctAnswer} />}
       </div>
     );
   }
