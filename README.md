@@ -1,7 +1,8 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/86e07a83-aed4-4718-837d-bc1ce4e89318/deploy-status)](https://app.netlify.com/sites/lascenify-trivia/deploys)
 # trivia
 
-Trivia game created with ReactJS
+Trivia game created with ReactJS.
+
 You can visit this site live [here](https://lascenify-trivia.netlify.app)
 
 ## Testing
