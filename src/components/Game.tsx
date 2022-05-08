@@ -32,6 +32,7 @@ export function Game() {
                   value={answer.text}
                   name="answer"
                   onClick={() => setSelectedAnswer(answer)}
+                  data-testid="game-answers"
                 />
                 {answer.text}
               </label>
