@@ -1,4 +1,10 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/86e07a83-aed4-4718-837d-bc1ce4e89318/deploy-status)](https://app.netlify.com/sites/ubiquitous-meerkat-b30c19/deploys)
 # trivia
+
+Trivia game created with ReactJS
+
+## Testing
+Unit tests created with [Jest](https://jestjs.io/es-ES/) and integration test are implemented with [Cypress](https://www.cypress.io/)
 
 ## Icons
 
