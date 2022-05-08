@@ -2,6 +2,7 @@
 # trivia
 
 Trivia game created with ReactJS
+You can visit this site live [here](https://lascenify-trivia.netlify.app)
 
 ## Testing
 Unit tests created with [Jest](https://jestjs.io/es-ES/) and integration test are implemented with [Cypress](https://www.cypress.io/)
